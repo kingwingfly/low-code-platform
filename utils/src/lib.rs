@@ -76,7 +76,7 @@ pub fn query_date() -> Result<String> {
     Ok(format!("{:02}{:02}", dt.month(), dt.day()))
 }
 
-pub fn query_birth(birth: &str) -> Result<Vec<Stuff>> {
+pub fn query_birth_stuff(birth: &str) -> Result<Vec<Stuff>> {
     Ok(EMPLOYEE_BIRTH
         .iter()
         .filter_map(|(&name, &date)| {
@@ -126,19 +126,19 @@ mod tests {
 
     #[test]
     fn query_birth_test() {
-        assert!(query_birth(query_date().unwrap().as_ref()).is_ok())
+        assert!(query_birth_stuff(query_date().unwrap().as_ref()).is_ok())
     }
 
     #[test]
     fn query_address_and_email_test() {
-        let mut stuff = query_birth(query_date().unwrap().as_ref()).unwrap();
+        let mut stuff = query_birth_stuff(query_date().unwrap().as_ref()).unwrap();
         assert!(query_address_and_email(&mut stuff).is_ok());
     }
 
     #[test]
     fn workflow() {
         let date = query_date().unwrap();
-        let mut stuff = query_birth(&date).unwrap();
+        let mut stuff = query_birth_stuff(&date).unwrap();
         query_address_and_email(&mut stuff).unwrap();
         let sender = Stuff::new("Sender");
         for one in stuff.iter() {
