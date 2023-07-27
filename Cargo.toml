@@ -1,0 +1,16 @@
+[workspace]
+members = ['src-tauri', "utils", "core-api"]
+
+[workspace.package]
+version = "0.0.1"
+repository = "https://github.com/kingwingfly/low-code-platform"
+authors = ["Louis <20200581@cqu.edu.cn>"]
+license = ""
+
+[workspace.dependencies]
+tokio = { version = '1.0', feature = ["full"] }
+snafu = "0.7.5"
+chrono = "0.4.26"
+lazy_static = "1.4.0"
+utils = { path = "utils" }
+core_api = { path = "core-api" }

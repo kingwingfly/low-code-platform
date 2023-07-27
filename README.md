@@ -1,1 +1,1 @@
-# low-code-platform
+This is a low code platform demo.
